@@ -262,14 +262,6 @@ Envía un mensaje y obtiene respuesta RAG
    - Almacena fragmentos de documentos con embeddings
    - Campos: `text`, `embedding`, `source_filename`, `source`
 
-2. **`sessions`**
-
-   - Gestiona sesiones de usuario
-   - Campos: `user_id`, `current_node_id`, `created_at`, `completed`
-
-3. **`responses`**
-   - Almacena historial de conversaciones
-
 ### Índice Vectorial (MongoDB Atlas)
 
 ```javascript
@@ -329,59 +321,6 @@ Esta sección está diseñada para documentar y evaluar el rendimiento del siste
 
 ---
 
-#### 5. Preguntas Fuera de Contexto
-
-**Objetivo**: Verificar que el sistema no alucine respuestas
-
-- [ ] ¿Cuál es el precio de...? (información no en documentos)
-- [ ] ¿Quién ganó las elecciones de 2024?
-- [ ] ¿Cuál es la receta de...?
-
-**Criterios de éxito**:
-
-- Responde: "No se encontró información en los documentos"
-- No genera respuestas inventadas
-- Score de similitud < 0.4
-
----
-
-### Métricas de Evaluación
-
-#### Precisión de Búsqueda
-
-```
-Precisión = Documentos Relevantes Recuperados / Total Documentos Recuperados
-```
-
-#### Recall (Cobertura)
-
-```
-Recall = Documentos Relevantes Recuperados / Total Documentos Relevantes en DB
-```
-
-#### Score Promedio de Similitud
-
-- **Excelente**: > 0.8
-- **Bueno**: 0.6 - 0.8
-- **Aceptable**: 0.4 - 0.6
-- **Pobre**: < 0.4
-
----
-
-### 📊 Resultados de Pruebas
-
-#### Sesión de Pruebas #1
-
-**Fecha**: ******\_******  
-**Documentos indexados**: **\_\_\_**  
-**Total de preguntas probadas**: **\_\_\_**
-
-##### Resultados Generales
-
-- ✅ Preguntas exitosas: \_**\_ / \_\_**
-- ❌ Preguntas fallidas: \_**\_ / \_\_**
-- 🟡 Respuestas parciales: \_**\_ / \_\_**
-
 ##### Preguntas que Funcionaron Bien
 
 | #   | Pregunta | Score | Fuentes | Comentario |
@@ -411,40 +350,6 @@ Recall = Documentos Relevantes Recuperados / Total Documentos Relevantes en DB
 
 ---
 
-### 📈 Mejoras Iterativas
-
-#### Basado en Resultados de Pruebas
-
-**Si las preguntas directas fallan**:
-
-- [ ] Ajustar `chunk_size` y `chunk_overlap`
-- [ ] Revisar `min_score` threshold
-- [ ] Aumentar `k` (número de documentos recuperados)
-
-**Si las preguntas complejas fallan**:
-
-- [ ] Implementar re-ranking de resultados
-- [ ] Aumentar tamaño del contexto al LLM
-- [ ] Considerar multiple queries para una pregunta
-
-**Si hay muchos falsos positivos**:
-
-- [ ] Aumentar `min_score` threshold
-- [ ] Implementar filtros de metadatos más específicos
-- [ ] Revisar calidad de los documentos indexados
-
----
-
-### 🎯 Objetivos de Mejora Continua
-
-- [ ] Alcanzar >90% de precisión en preguntas directas
-- [ ] Alcanzar >75% de precisión en preguntas complejas
-- [ ] Reducir falsos positivos a <5%
-- [ ] Responder "no sé" cuando corresponda (>95% de casos)
-- [ ] Mantener latencia promedio <2 segundos
-
----
-
 ## 🤝 Contribuciones
 
 Para contribuir al proyecto:
@@ -457,7 +362,7 @@ Para contribuir al proyecto:
 
 ## 📄 Licencia
 
-Este proyecto fue desarrollado por **EnigmaCoders** para el hackathon.
+Este proyecto fue desarrollado por **EnigmaCoders** para el hackathon de Talento Tech.
 
 ---
 
@@ -474,4 +379,4 @@ Este proyecto fue desarrollado por **EnigmaCoders** para el hackathon.
 
 ---
 
-**Última actualización**: Noviembre 2025
+**Última actualización**: 22 Noviembre 2025
